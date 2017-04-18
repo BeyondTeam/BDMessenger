@@ -1,6 +1,6 @@
 package.path = package.path..';.luarocks/share/lua/5.2/?.lua;.luarocks/share/lua/5.2/?/init.lua'
 package.cpath = package.cpath..';.luarocks/lib/lua/5.2/?.so'
-    bot_token = "Token" --Put You Token Here
+    bot_token = "231281320:AAH6F4ZhVWUDH3jHgLVEBWyJNaNxNUds6aE" --Put You Token Here
    send_api = "https://api.telegram.org/bot"..bot_token
 sudo_id = 157059515
 require('./bot/methods')
@@ -108,7 +108,7 @@ if plugin.pre_process then
         -- If plugin is for privileged users only
           local result = plugin.run(msg, matches)
           if result then
-            send_msg(msg.chat.id, result, 'markdown')
+            send_msg(msg.chat.id, result, 'markdown', msg.message_id)
         end
       end
       -- One patterns matches
@@ -131,26 +131,26 @@ function create_config( )
     "core"
     },
     sudo_users = {157059515},--Sudo users
-    info_text = [[》Beyond Messenger V1.0
-An messenger bot based on plugin
+    info_text = [[*》Beyond Messenger V1.0*
+`》An messenger bot based on plugin`
 
-》https://github.com/BeyondTeam/BeyondMessenger
+》[Beyond Messenger](https://github.com/BeyondTeam/BDMessenger)
 
-》Admins :
-》@SoLiD ➣ Founder & Developer《
-》@Makan ➣ Developer & Sponser《
-》@ToOfan ➣ Developer《
-》@CliFather ➣ Developer《
+*》Admins :*
+*》Founder & Developer :* [SoLiD](Telegram.Me/SoLiD)
+_》Developer & Sponser :_ [MAKAN](Telegram.Me/MAKAN)
+_》Developer :_ [ToOfan](Telegram.Me/ToOfan)
+_》Developer :_ [Ehsan](Telegram.Me/CliFather)
 
-》Special thanks to :
-》@MrHalix
-》And Beyond Team Members
+*》Special thanks to :*
+》[MrHalix](Telegram.Me/MrHalix)
+`And Beyond Team Members`
 
-》Our channel :
-》@BeyondTeam《
+*》Our channel :*
+》[BeyondTeam](Telegram.Me/BeyondTeam)
 
-》Our website :
-》http://BeyondTeam.ir
+*》Our Site :*
+[BeyondTeam](BeyondTeam.ir)
 ]],
   }
   serialize_to_file(config, './data/config.lua')

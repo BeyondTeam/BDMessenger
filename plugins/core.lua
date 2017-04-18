@@ -142,7 +142,7 @@ if matches[1] == "setrealm" and is_sudo(msg) then
 return "*Realm has been add*"
 end
 if matches[1] == "beyond" then
-return send_msg(msg.chat.id, _config.info_text)
+return _config.info_text
 end
 if matches[1] == "users" and is_sudo(msg) then
 return user_list()

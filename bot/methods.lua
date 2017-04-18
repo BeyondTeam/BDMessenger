@@ -1,23 +1,17 @@
-function send_msg(chat_id, text, use_markdown)
-	local text_len = string.len(text)
-	local num_msg = math.ceil(text_len / 4000)
-	if num_msg <= 1 then
-		local send = send_api.."/sendMessage?chat_id="..chat_id.."&text="..url.escape(text)
-		if use_markdown then
-			send = send.."&parse_mode=Markdown"
-		end
-		return send_req(send)
-	else
-		text = text:gsub("*","")
-		text = text:gsub("`","")
-		text = text:gsub("_","")
-		local f = io.open("large_msg.txt", 'w')
-		f:write(text)
-		f:close()
-		local send = send_api.."/sendDocument"
-		local curl_command = 'curl -s "'..send..'" -F "chat_id='..chat_id..'" -F "document=@large_msg.txt"'
-		return io.popen(curl_command):read("*all")
+function send_msg(chat_id, text, use_markdown, reply_to_message_id)
+
+	local url = send_api .. '/sendMessage?chat_id=' .. chat_id .. '&text=' .. url.escape(text)
+
+	if reply_to_message_id then
+		url = url .. '&reply_to_message_id=' .. reply_to_message_id
 	end
+
+	if use_markdown then
+		url = url .. '&parse_mode=Markdown'
+	end
+
+	return send_req(url)
+
 end
 
 function send_document(chat_id, name)

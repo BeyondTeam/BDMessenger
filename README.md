@@ -34,7 +34,7 @@ cd $HOME && git clone https://github.com/BeyondTeam/BDMessenger.git && cd BDMess
 
 * * *
 # After Run
-*Add Your Bot To Your Group And Send `/setrealm` Command!
+* Add Your Bot To Your Group And Send `/setrealm` Command!
 * * *
 
 # Support and Development

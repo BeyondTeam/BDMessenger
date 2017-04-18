@@ -1,7 +1,7 @@
 # [BDMessenger](https://t.me/TeleBeyondApiBot)
 
 [![Bot API](http://img.shields.io/badge/Bot%20API-v2.3.1-00aced.svg)](https://core.telegram.org/bots/api)
-[![https://t.me/BeyondTeam](https://img.shields.io/badge/💬%20Telegram-BeyondTeam-blue.svg)](https://t.me/BeyondTeam)
+[![https://t.me/BeyondTeam](https://img.shields.io/badge/💬%20Telegram-BeyondTeam-00aced.svg)](https://t.me/BeyondTeam)
 
 ## Beyond Messenger V1.0 
 Messenger Bot Based On Plugin

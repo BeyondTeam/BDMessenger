@@ -268,7 +268,7 @@ if redis:get("setstart") then
   end
 startmsg = startmsg:gsub("{name}", check_markdown(msg.from.first_name))
 startmsg = startmsg:gsub("{username}", check_markdown((msg.from.username or "")))
-send_msg(msg.chat.id, startmsg)
+send_msg(msg.chat.id, startmsg, "markdown")
 end
 if redis:get("realm") then
     realm = redis:get("realm")
@@ -295,7 +295,7 @@ send_msg(msg.chat.id, "*You Are Block...!*\n_شما بلاک شده اید_", "m
 end
   else
 forwardMessage(realm,msg.chat.id,msg.message_id)
-send_msg(msg.chat.id, sendmsg)
+send_msg(msg.chat.id, sendmsg, "markdown")
    end
 end
 if msg.sticker then
@@ -313,7 +313,7 @@ send_msg(msg.chat.id, "*You Are Block...!*\n_شما بلاک شده اید_", "m
 end
   else
 forwardMessage(realm,msg.chat.id,msg.message_id)
-send_msg(msg.chat.id, sendmsg)
+send_msg(msg.chat.id, sendmsg, "markdown")
 send_msg(realm, "➣Sticker Sender : "..user_name.." "..msg.from.id)
        end
    end
@@ -332,7 +332,7 @@ send_msg(msg.chat.id, "*You Are Block...!*\n_شما بلاک شده اید_", "m
 end
   else
 forwardMessage(realm,msg.chat.id,msg.message_id)
-send_msg(msg.chat.id, sendmsg)
+send_msg(msg.chat.id, sendmsg, "markdown")
 send_msg(realm, "➣Forwarder : "..user_name.." "..msg.from.id)
          end
       end

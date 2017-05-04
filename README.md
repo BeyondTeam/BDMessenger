@@ -24,6 +24,10 @@ chmod +x beyond.sh
 ./beyond.sh install
 ./beyond.sh 
 
+
+# For Auto Launch:
+chmod 777 autobd.sh
+screen ./autobd.sh
 # End ;)
 ```
 ### One command
@@ -54,6 +58,10 @@ More information [Beyond Global Chat](https://t.me/joinchat/AAAAAEGaKOxC8K6cJ3b
 [MAKAN](https://github.com/makanj) ([Telegram](https://t.me/MAKAN))
 
 [ToOfan](https://github.com/To0fan) ([Telegram](https://t.me/ToOfan))
+
+[Mohammad](https://t.me/Mohammadrezajiji)
+
+[AmirHossein](https://t.me/Sudo1)
 
 [CliFather](https://t.me/CliFather)
 

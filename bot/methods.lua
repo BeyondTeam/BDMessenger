@@ -89,3 +89,13 @@ function check_markdown(text) --markdown escape ( when you need to escape markdo
 		end
 	return output
 end
+
+function getChatMember(chat_id, user_id)
+ local url = send_api .. '/getChatMember?chat_id=' .. chat_id .. '&user_id=' .. user_id
+   return send_req(url)
+end
+
+function LeaveGroup(chat_id)
+  local url = send_api .. '/leaveChat?chat_id=' .. chat_id
+  return send_req(url)
+end

@@ -27,7 +27,8 @@ chmod +x beyond.sh
 
 # For Auto Launch:
 chmod 777 autobd.sh
-screen ./autobd.sh
+tmux
+./autobd.sh
 # End ;)
 ```
 ### One command

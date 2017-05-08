@@ -96,7 +96,7 @@ local profile_text = [[
 ]]
 
 local keyboard = {{"📬پروفایل"},{"🌟کانال ما","🎯اعضای تیم"},{"🔖راهنما","🚦اطلاعات چت"}}
-local start_key = {{{text="👤ارتباط با ما",url="https://telegram.me/moribatar"}}}
+local start_key = {{{text="👤ارتباط با ما",url="https://telegram.me/SoLiD"}}}
 
 local function getindex(t,id) 
 for i,v in pairs(t) do 

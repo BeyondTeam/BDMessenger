@@ -3,7 +3,7 @@
 [![Bot API](http://img.shields.io/badge/Bot%20API-v2.3.1-00aced.svg)](https://core.telegram.org/bots/api)
 [![https://t.me/BeyondTeam](https://img.shields.io/badge/💬%20Telegram-BeyondTeam-00aced.svg)](https://t.me/BeyondTeam)
 
-## Beyond Messenger V1.0 
+## Beyond Messenger V2.0 
 Messenger Bot Based On Plugin
 
 * * *
@@ -11,7 +11,7 @@ Messenger Bot Based On Plugin
 ## Configure
 
 * Put Your Bot `TOKEN` At Line `3`
-* Put Your `Telegram ID` At Line `5 & 133`
+* Put Your `Telegram ID` At Line `5 & 149`
 
 # Installation
 
@@ -44,7 +44,7 @@ cd $HOME && git clone https://github.com/BeyondTeam/BDMessenger.git && cd BDMess
 
 # Support and Development
 
-More information [Beyond Global Chat](https://t.me/joinchat/AAAAAEGaKOxC8K6cJ3bCcw)
+More information[Beyond Global Chat](https://t.me/joinchat/CVyJu0IDQ8FtbwO94syUSA)
 
 # Special thanks to
 
@@ -60,11 +60,7 @@ More information [Beyond Global Chat](https://t.me/joinchat/AAAAAEGaKOxC8K6cJ3b
 
 [ToOfan](https://github.com/To0fan) ([Telegram](https://t.me/ToOfan))
 
-[Mohammad](https://t.me/Mohammadrezajiji)
-
-[AmirHossein](https://t.me/Sudo1)
-
-[CliFather](https://t.me/CliFather)
+[Xamarin Developer](https://github.com/XamarinDevTeam) ([Telegram](https://t.me/Xamarin_Developer))
 
 ### Our Telegram channel:
 

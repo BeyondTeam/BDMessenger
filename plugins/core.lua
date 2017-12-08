@@ -96,8 +96,8 @@ local profile_text = [[
 @BeyondTeam
 ]]
 
-local sudo_keyboard = {{"ðŸš¦ Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ú†Øª","ðŸŽ¯ Ø§Ø¹Ø¶Ø§ÛŒ ØªÛŒÙ…"},{"ðŸ”– Ø±Ø§Ù‡Ù†Ù…Ø§","ðŸ‘¥ Ù„ÛŒØ³Øª Ú©Ø§Ø±Ø¨Ø±Ø§Ù†"},{"ðŸš· Ù„ÛŒØ³Øª Ø³ÛŒØ§Ù‡","ðŸ‘¤ Ù„ÛŒØ³Øª Ø³ÙˆØ¯Ùˆ Ù‡Ø§"},{"âœ… Ù¾Ø§Ú© Ú©Ø±Ø¯Ù† Ù„ÛŒØ³Øª Ø³ÛŒØ§Ù‡","ðŸ” Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ù…Ø¬Ø¯Ø¯"}}
-local keyboard = {{"ðŸ“¬ Ù¾Ø±ÙˆÙØ§ÛŒÙ„"},{"ðŸŒŸ Ú©Ø§Ù†Ø§Ù„ Ù…Ø§","ðŸŽ¯ Ø§Ø¹Ø¶Ø§ÛŒ ØªÛŒÙ…"},{"ðŸ”– Ø±Ø§Ù‡Ù†Ù…Ø§","ðŸš¦ Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ú†Øª"}}
+local sudo_keyboard = {{"🚦 اطلاعات چت","🎯 اعضای تیم"},{"🔖 راهنما","👥 لیست کاربران"},{"🚷 لیست سیاه","👤 لیست سودو ها"},{"✅ پاک کردن لیست سیاه","🔁 بارگذاری مجدد"}}
+local keyboard = {{"📬 پروفایل"},{"🌟 کانال ما","🎯 اعضای تیم"},{"🔖 راهنما","🚦 اطلاعات چت"}}
 
 local function getindex(t,id) 
 	for i,v in pairs(t) do 
@@ -269,7 +269,7 @@ local function run(msg, matches)
 	if is_blocked and msg.chat.type == "private" then
 		return false
 	end
-	if (matches[1] == "id" or  matches[1] == "ðŸš¦ Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ú†Øª") then
+	if (matches[1] == "id" or  matches[1] == "🚦 اطلاعات چت") then
 		if not msg.reply_to_message then
 			return "*Chat ID* : "..msg.chat.id.."\n*Your ID* : "..msg.from.id
 		elseif msg.reply_to_message then
@@ -280,19 +280,19 @@ local function run(msg, matches)
 		redis:set("realm",msg.chat.id)
 		return "*Realm has been add*"
 	end
-	if matches[1] == "beyond" or matches[1] == "ðŸŽ¯ Ø§Ø¹Ø¶Ø§ÛŒ ØªÛŒÙ…"  then
+	if matches[1] == "beyond" or matches[1] == "🎯 اعضای تیم"  then
 		return _config.info_text
 	end
-	if (matches[1] == "users" or matches[1] == "ðŸ‘¥ Ù„ÛŒØ³Øª Ú©Ø§Ø±Ø¨Ø±Ø§Ù†") and is_sudo(msg) then
+	if (matches[1] == "users" or matches[1] == "👥 لیست کاربران") and is_sudo(msg) then
 		return user_list(msg)
 	end
-	if (matches[1] == "help" or matches[1] == "ðŸ”– Ø±Ø§Ù‡Ù†Ù…Ø§") and is_sudo(msg) then
+	if (matches[1] == "help" or matches[1] == "🔖 راهنما") and is_sudo(msg) then
 		return help_text
 	end
-	if matches[1] == "help" or matches[1] == "ðŸ”– Ø±Ø§Ù‡Ù†Ù…Ø§" then
+	if matches[1] == "help" or matches[1] == "🔖 راهنما" then
 		return mem_help
 	end
-	if matches[1] == "ðŸ“¬ Ù¾Ø±ÙˆÙØ§ÛŒÙ„" then
+	if matches[1] == "📬 پروفایل" then
 		if redis:get("profile") then
 			proftext = redis:get("profile")
 		else
@@ -300,45 +300,45 @@ local function run(msg, matches)
 		end
 		return proftext
 	end
-	if (matches[1] == "blocklist" or matches[1] == "ðŸš· Ù„ÛŒØ³Øª Ø³ÛŒØ§Ù‡") and is_sudo(msg) then
+	if (matches[1] == "blocklist" or matches[1] == "🚷 لیست سیاه") and is_sudo(msg) then
 		return blocked_list(msg)
 	end
-	if (matches[1] == "sudolist" or matches[1] == "ðŸ‘¤ Ù„ÛŒØ³Øª Ø³ÙˆØ¯Ùˆ Ù‡Ø§") and is_sudo(msg) then
+	if (matches[1] == "sudolist" or matches[1] == "👤 لیست سودو ها") and is_sudo(msg) then
 		return sudolist(msg)
 	end
-	if (matches[1] == "clean blocklist" or matches[1] == "âœ… Ù¾Ø§Ú© Ú©Ø±Ø¯Ù† Ù„ÛŒØ³Øª Ø³ÛŒØ§Ù‡") and is_sudo(msg) then
+	if (matches[1] == "clean blocklist" or matches[1] == "✅ پاک کردن لیست سیاه") and is_sudo(msg) then
 		redis:del('blocked')
 		return "*Block list has been cleaned*"
 	end
 	if matches[1] == "block" and is_sudo(msg) then
 		if matches[2] then
 			redis:sadd('blocked',matches[2])
-			send_msg(matches[2], "*You Are Blocked By Admin Command*\n_Ø´Ù…Ø§ Ø¨Ù‡ Ø¯Ø³ØªÙˆØ± Ø§Ø¯Ù…ÛŒÙ† Ø¨Ù„Ø§Ú© Ø´Ø¯ÛŒØ¯_", "markdown")
+			send_msg(matches[2], "*You Are Blocked By Admin Command*\n_شما به دستور ادمین بلاک شدید_", "markdown")
 			return "_User_ *"..matches[2].."* _has been blocked_"
 		end
 		if msg.reply_to_message and msg.reply_to_message.forward_from then
 			local user = msg.reply_to_message.forward_from.id
 			redis:sadd('blocked',user)
-			send_msg(user, "*You Are Blocked By Admin Command*\n_Ø´Ù…Ø§ Ø¨Ù‡ Ø¯Ø³ØªÙˆØ± Ø§Ø¯Ù…ÛŒÙ† Ø¨Ù„Ø§Ú© Ø´Ø¯ÛŒØ¯_", "markdown")
+			send_msg(user, "*You Are Blocked By Admin Command*\n_شما به دستور ادمین بلاک شدید_", "markdown")
 			return "_User_ *"..user.."* _has been blocked_"
 		end
 	end
 	if matches[1] == "unblock" and is_sudo(msg) then
 		if matches[2] then
 			redis:srem('blocked',matches[2])
-			send_msg(matches[2], "*You Are Unblocked By Admin Command*\n_Ø´Ù…Ø§ Ø¨Ù‡ Ø¯Ø³ØªÙˆØ± Ø§Ø¯Ù…ÛŒÙ† Ø§Ø² Ø¨Ù„Ø§Ú© Ø®Ø§Ø±Ø¬ Ø´Ø¯ÛŒØ¯_", "markdown")
+			send_msg(matches[2], "*You Are Unblocked By Admin Command*\n_شما به دستور ادمین از بلاک خارج شدید_", "markdown")
 			return "_User_ *"..matches[2].."* _has been unblocked_"
 		end
 		if msg.reply_to_message and msg.reply_to_message.forward_from then
 			local user = msg.reply_to_message.forward_from.id
 			redis:srem('blocked',user)
-			send_msg(user, "*You Are Unblocked By Admin Command*\n_Ø´Ù…Ø§ Ø¨Ù‡ Ø¯Ø³ØªÙˆØ± Ø§Ø¯Ù…ÛŒÙ† Ø§Ø² Ø¨Ù„Ø§Ú© Ø®Ø§Ø±Ø¬ Ø´Ø¯ÛŒØ¯_", "markdown")
+			send_msg(user, "*You Are Unblocked By Admin Command*\n_شما به دستور ادمین از بلاک خارج شدید_", "markdown")
 			return "_User_ *"..user.."* _has been unblocked_"
 		end
 	end
 	if matches[1] == "setsent" and matches[2] and is_sudo(msg) then
 		redis:set("setsent",matches[2])
-		return "*Sent message has been set*\n_You Can Use :_\n`{name}` âž£ _Sender Name_\n`{username}` âž£ _Sender Username_"
+		return "*Sent message has been set*\n_You Can Use :_\n`{name}` ➣ _Sender Name_\n`{username}` ➣ _Sender Username_"
 	end
 	if matches[1] == "setprofiletext" and matches[2] and is_sudo(msg) then
 		redis:set("profile",matches[2])
@@ -346,7 +346,7 @@ local function run(msg, matches)
 	end
 	if matches[1] == "setstart" and matches[2] and is_sudo(msg) then
 		redis:set("setstart",matches[2])
-		return "*Start message has been set*\n_You Can Use :_\n`{name}` âž£ _New Member Name_\n`{username}` âž£ _New Member Username_"
+		return "*Start message has been set*\n_You Can Use :_\n`{name}` ➣ _New Member Name_\n`{username}` ➣ _New Member Username_"
 	end
 	if matches[1] == "sendtoall" and matches[2] and is_sudo(msg) then
 		local list = redis:smembers('users')
@@ -362,7 +362,7 @@ local function run(msg, matches)
 		end
 		return "*Sent to "..redis:scard('users').." user*"
 	end
-	if (matches[1] == "init" or matches[1] == "ðŸ” Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ù…Ø¬Ø¯Ø¯") and is_sudo(msg) then
+	if (matches[1] == "init" or matches[1] == "🔁 بارگذاری مجدد") and is_sudo(msg) then
 		bot_run()
 		reload_plugins(true)
 		return "*Bot Reloaded*"
@@ -484,7 +484,7 @@ local function pre_process(msg)
 		redis:sadd('users',v)
 	end
 
-	local botcmd = msg.text == "/start" or msg.text == "/init" or msg.text == "/setrealm" or msg.text == "/setstart (.*)" or msg.text == "/id" or msg.text == "/setsent (.*)" or msg.text == "/blocklist" or msg.text == "/users" or msg.text == "/block (%d+)" or msg.text == "/unblock (%d+)" or msg.text == "/clean blocklist" or msg.text == "/setsudo (%d+)" or msg.text == "/remsudo (%d+)" or msg.text == "/antiflood (.*)" or msg.text == "/setpvflood (%d+)" or msg.text == "/setpvfloodtime (%d+)" or msg.text == "/help" or msg.text == "/sudolist" or msg.text == "/sendtoall (.*)" or msg.text == "/beyond" or msg.text == "ðŸš¦ Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ú†Øª" or msg.text == "ðŸ“¬ Ù¾Ø±ÙˆÙØ§ÛŒÙ„" or msg.text == "ðŸŽ¯ Ø§Ø¹Ø¶Ø§ÛŒ ØªÛŒÙ…" or msg.text == "ðŸŒŸ Ú©Ø§Ù†Ø§Ù„ Ù…Ø§" or msg.text == "ðŸ”– Ø±Ø§Ù‡Ù†Ù…Ø§" or msg.text == "/block" or msg.text == "/unblock" or msg.text == "/setsudo" or msg.text == "/remsudo" or msg.text == "/autoleave (.*)" or msg.text == "/fwdtoall" or msg.text == "/setprofiletext (.*)" or msg.text == "ðŸš· Ù„ÛŒØ³Øª Ø³ÛŒØ§Ù‡" or msg.text == "ðŸ‘¤ Ù„ÛŒØ³Øª Ø³ÙˆØ¯Ùˆ Ù‡Ø§" or msg.text == "âœ… Ù¾Ø§Ú© Ú©Ø±Ø¯Ù† Ù„ÛŒØ³Øª Ø³ÛŒØ§Ù‡" or msg.text == "ðŸ” Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ù…Ø¬Ø¯Ø¯" or msg.text == "ðŸ‘¥ Ù„ÛŒØ³Øª Ú©Ø§Ø±Ø¨Ø±Ø§Ù†"
+	local botcmd = msg.text == "/start" or msg.text == "/init" or msg.text == "/setrealm" or msg.text == "/setstart (.*)" or msg.text == "/id" or msg.text == "/setsent (.*)" or msg.text == "/blocklist" or msg.text == "/users" or msg.text == "/block (%d+)" or msg.text == "/unblock (%d+)" or msg.text == "/clean blocklist" or msg.text == "/setsudo (%d+)" or msg.text == "/remsudo (%d+)" or msg.text == "/antiflood (.*)" or msg.text == "/setpvflood (%d+)" or msg.text == "/setpvfloodtime (%d+)" or msg.text == "/help" or msg.text == "/sudolist" or msg.text == "/sendtoall (.*)" or msg.text == "/beyond" or msg.text == "🚦 اطلاعات چت" or msg.text == "📬 پروفایل" or msg.text == "🎯 اعضای تیم" or msg.text == "🌟 کانال ما" or msg.text == "🔖 راهنما" or msg.text == "/block" or msg.text == "/unblock" or msg.text == "/setsudo" or msg.text == "/remsudo" or msg.text == "/autoleave (.*)" or msg.text == "/fwdtoall" or msg.text == "/setprofiletext (.*)" or msg.text == "🚷 لیست سیاه" or msg.text == "👤 لیست سودو ها" or msg.text == "✅ پاک کردن لیست سیاه" or msg.text == "🔁 بارگذاری مجدد" or msg.text == "👥 لیست کاربران"
 	
 	
 	--by @Xamarin_Developer
@@ -500,7 +500,7 @@ local function pre_process(msg)
 		if is_sudo1(tonumber(user_id)) then
 			if xamarin == 'Block:'..work_with_user then
 				redis:sadd('blocked',work_with_user)
-				send_msg(work_with_user, "*You Are Blocked By Admin Command*\n_Ø´Ù…Ø§ Ø¨Ù‡ Ø¯Ø³ØªÙˆØ± Ø§Ø¯Ù…ÛŒÙ† Ø¨Ù„Ø§Ú© Ø´Ø¯ÛŒØ¯_", "markdown")
+				send_msg(work_with_user, "*You Are Blocked By Admin Command*\n_شما به دستور ادمین بلاک شدید_", "markdown")
 				local users = redis:scard('users')
 				local inline = {}
 				local list = redis:smembers('users')
@@ -554,7 +554,7 @@ local function pre_process(msg)
 			end
 			if xamarin == 'Unblock:'..work_with_user then
 				redis:srem('blocked',work_with_user)
-				send_msg(work_with_user, "*You Are Unblocked By Admin Command*\n_Ø´Ù…Ø§ Ø¨Ù‡ Ø¯Ø³ØªÙˆØ± Ø§Ø¯Ù…ÛŒÙ† Ø§Ø² Ø¨Ù„Ø§Ú© Ø®Ø§Ø±Ø¬ Ø´Ø¯ÛŒØ¯_", "markdown")
+				send_msg(work_with_user, "*You Are Unblocked By Admin Command*\n_شما به دستور ادمین از بلاک خارج شدید_", "markdown")
 				local list = redis:smembers('blocked')
 				local page = 1
 				if #list == 0 then
@@ -858,8 +858,8 @@ local function pre_process(msg)
 		send_msg(msg.chat.id, "_This Is Not My_ *Realm*", "markdown")
 		LeaveGroup(msg.chat.id)
 	end
-	if msg.text == "ðŸŒŸ Ú©Ø§Ù†Ø§Ù„ Ù…Ø§"  then
-		return send_key(msg.chat.id, "[our channel](http://telegram.me/BeyondTeam)",nil,{{{text="ðŸ‘¤Ø§Ø±ØªØ¨Ø§Ø· Ø¨Ø§ Ù…Ø§",url="T.Me/BDMessengerBot"}}})
+	if msg.text == "🌟 کانال ما"  then
+		return send_key(msg.chat.id, "[our channel](http://telegram.me/BeyondTeam)",nil,{{{text="👤ارتباط با ما",url="T.Me/BDMessengerBot"}}})
 	end
 	if msg.text == "/start" and msg.chat.type == "private" then
 		if is_sudo(msg) then
@@ -914,7 +914,7 @@ local function pre_process(msg)
 				if redis:get('user:'..msg.from.id..':flooder') then
 					return
 				else
-					send_msg(msg.chat.id, "*You Are Block...!*\n_Ø´Ù…Ø§ Ø¨Ù„Ø§Ú© Ø´Ø¯Ù‡ Ø§ÛŒØ¯_", "markdown")
+					send_msg(msg.chat.id, "*You Are Block...!*\n_شما بلاک شده اید_", "markdown")
 				end
 			else
 				if not msg.sticker and not msg.forward_from and not msg.forward_from_chat then
@@ -928,7 +928,7 @@ local function pre_process(msg)
 					end
 					forwardMessage(realm,msg.chat.id,msg.message_id)
 					send_msg(msg.chat.id, sendmsg, "markdown")
-					send_msg(realm, "âž£Sticker Sender : "..check_markdown(user_name).." "..msg.from.id.."\n\n*Reply this message for answer*","markdown")
+					send_msg(realm, "➣Sticker Sender : "..check_markdown(user_name).." "..msg.from.id.."\n\n*Reply this message for answer*","markdown")
 				elseif msg.forward_from or msg.forward_from_chat then
 					if msg.from.username then
 						user_name = '@'..msg.from.username
@@ -937,7 +937,7 @@ local function pre_process(msg)
 					end
 					forwardMessage(realm,msg.chat.id,msg.message_id)
 					send_msg(msg.chat.id, sendmsg, "markdown")
-					send_msg(realm, "âž£Forwarder : "..check_markdown(user_name).." "..msg.from.id.."\n\n*Reply this message for answer*","markdown")
+					send_msg(realm, "➣Forwarder : "..check_markdown(user_name).." "..msg.from.id.."\n\n*Reply this message for answer*","markdown")
 				end
 			end
 		end
@@ -945,7 +945,7 @@ local function pre_process(msg)
 
 	if not botcmd and (is_sudo(msg) or msg.chat.id == realm) then
 		if msg.reply_to_message and not msg.reply_to_message.forward_from and msg.reply_to_message.from.id == bot.id then
-			if msg.reply_to_message.text:match("âž£.*") then
+			if msg.reply_to_message.text:match("➣.*") then
 				local user = msg.reply_to_message.text:match(".* (%d+)\n\nReply this message for answer")
 				if msg.text then
 					send_msg(user, msg.text)
@@ -1016,23 +1016,23 @@ end
 
 return {
 	patterns ={
-		"^(ðŸš· Ù„ÛŒØ³Øª Ø³ÛŒØ§Ù‡)$",
-		"^(ðŸ‘¥ Ù„ÛŒØ³Øª Ú©Ø§Ø±Ø¨Ø±Ø§Ù†)$",
-		"^(ðŸ‘¤ Ù„ÛŒØ³Øª Ø³ÙˆØ¯Ùˆ Ù‡Ø§)$",
-		"^(ðŸ” Ø¨Ø§Ø±Ú¯Ø°Ø§Ø±ÛŒ Ù…Ø¬Ø¯Ø¯)$",
-		"^(âœ… Ù¾Ø§Ú© Ú©Ø±Ø¯Ù† Ù„ÛŒØ³Øª Ø³ÛŒØ§Ù‡)$",
-		"^(ðŸ“¬ Ù¾Ø±ÙˆÙØ§ÛŒÙ„)$",
+		"^(🚷 لیست سیاه)$",
+		"^(👥 لیست کاربران)$",
+		"^(👤 لیست سودو ها)$",
+		"^(🔁 بارگذاری مجدد)$",
+		"^(✅ پاک کردن لیست سیاه)$",
+		"^(📬 پروفایل)$",
 		"^[/](id)$",
 		"^[/](userid)$",
-		"^(ðŸš¦ Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ú†Øª)$",
+		"^(🚦 اطلاعات چت)$",
 		"^[/](init)$",
 		"^[/](help)$",
-		"^(ðŸ”– Ø±Ø§Ù‡Ù†Ù…Ø§)$",
-		"^(ðŸŒŸ Ú©Ø§Ù†Ø§Ù„ Ù…Ø§)$",
+		"^(🔖 راهنما)$",
+		"^(🌟 کانال ما)$",
 		"^[/](blocklist)$",
 		"^[/](sudolist)$",
 		"^[/](beyond)$",
-		"^(ðŸŽ¯ Ø§Ø¹Ø¶Ø§ÛŒ ØªÛŒÙ…)$",
+		"^(🎯 اعضای تیم)$",
 		"^[/](clean blocklist)$",
 		"^[/](users)$",
 		"^[/](setstart) (.*)$",

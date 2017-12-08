@@ -11,7 +11,7 @@ Messenger Bot Based On Plugin
 ## Configure
 
 * Put Your Bot `TOKEN` At Line `3`
-* Put Your `Telegram ID` At Line `5 & 149`
+* Put Your `Telegram ID` At Line `5 & 147`
 
 # Installation
 

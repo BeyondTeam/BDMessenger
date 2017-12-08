@@ -31,6 +31,7 @@ end
 function send_key(chat_id, text, keyboard, resize, mark)
 	local response = {}
 	response.keyboard = keyboard
+	response.inline_keyboard = inline
 	response.resize_keyboard = resize
 	response.one_time_keyboard = false
 	response.selective = false
@@ -41,6 +42,30 @@ function send_key(chat_id, text, keyboard, resize, mark)
 		sended = send_api.."/sendMessage?chat_id="..chat_id.."&text="..url.escape(text).."&parse_mode=Markdown&disable_web_page_preview=true&reply_markup="..url.escape(responseString)
 	end
 	return send_req(sended)
+end
+
+function edit_key( chat_id, message_id, text, keyboard, inline, resize, mark)
+	local response = {}
+	response.keyboard = keyboard
+	response.inline_keyboard = inline
+	response.resize_keyboard = resize
+	response.one_time_keyboard = false
+	response.selective = false
+	local responseString = JSON.encode(response)
+	local Rep =  send_api.. '/editMessageText?&chat_id='..chat_id..'&message_id='..message_id..'&text=' .. url.escape(text)
+	Rep=Rep .. '&parse_mode=Markdown'
+	if keyboard or inline then
+		Rep=Rep..'&reply_markup='..url.escape(responseString)
+	end
+	return send_req(Rep)
+end
+
+function alert(callback_query_id, text, show_alert)
+	local Rep = send_api .. '/answerCallbackQuery?callback_query_id=' .. callback_query_id .. '&text=' .. url.escape(text)
+	if show_alert then
+		Rep = Rep..'&show_alert=true'
+	end
+	return send_req(Rep)
 end
 
 function string:input()
@@ -72,6 +97,23 @@ function is_sudo(msg)
     if user == msg.from.id then
       var = true
     end
+  end
+  if sudo_id == msg.from.id then
+		var = true
+  end
+  return var
+end
+
+function is_sudo1(sudoo)
+  local var = false
+  -- Check users id in config
+  for v,user in pairs(_config.sudo_users) do
+    if user == sudoo then
+      var = true
+    end
+  end
+  if sudo_id == sudoo then
+		var = true
   end
   return var
 end

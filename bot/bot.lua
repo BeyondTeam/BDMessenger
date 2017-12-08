@@ -24,6 +24,20 @@ function bot_run()
 	startbot = true
 end
 
+function check_markdown(text)
+str = text
+if str:match('_') then
+output = str:gsub('_',[[\_]])
+elseif str:match('*') then
+output = str:gsub('*','\\*')
+elseif str:match('`') then
+output = str:gsub('`','\\`')
+else
+output = str
+end
+return output
+end
+
 function send_req(url)
 	local dat, res = https.request(url)
 	local tab = JSON.decode(dat)
@@ -131,7 +145,7 @@ function create_config( )
     "core"
     },
     sudo_users = {157059515},--Sudo users
-    info_text = [[*》Beyond Messenger V1.0*
+    info_text = [[*》Beyond Messenger V2.0*
 `》An messenger bot based on plugin`
 
 》[Beyond Messenger](https://github.com/BeyondTeam/BDMessenger)
@@ -140,19 +154,16 @@ function create_config( )
 *》Founder & Developer :* [SoLiD](Telegram.Me/SoLiD)
 _》Developer & Sponser :_ [MAKAN](Telegram.Me/MAKAN)
 _》Developer :_ [ToOfan](Telegram.Me/ToOfan)
-_》Developer :_ [Mohammad](Telegram.Me/Mohammadrezajiji)
-_》Developer :_ [AmirHossein](Telegram.Me/Sudo1)
-_》Developer :_ [Ehsan](Telegram.Me/CliFather)
+_》Developer :_ [Xamarin Developer](Telegram.Me/Xamarin_Developer)
 
 *》Special thanks to :*
-》[MrHalix](Telegram.Me/MrHalix)
-`And Beyond Team Members`
+》`Beyond Team Members`
 
 *》Our channel :*
 》[BeyondTeam](Telegram.Me/BeyondTeam)
 
 *》Our Site :*
-[BeyondTeam](BeyondTeam.ir)
+》[BeyondTeam](BeyondTeam.ir)
 ]],
   }
   serialize_to_file(config, './data/config.lua')
@@ -212,6 +223,8 @@ while startbot do
           if msg_valid(v.message) then
 				match_plugins(v.message)
           end
+				elseif v.callback_query then
+				match_plugins(v)
 			end
 		end
 	else

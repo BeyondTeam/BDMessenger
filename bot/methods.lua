@@ -28,7 +28,7 @@ function forwardMessage(chat_id, from_chat_id, message_id)
 
 end
 
-function send_key(chat_id, text, keyboard, resize, mark)
+function send_key(chat_id, text, keyboard, inline, resize, mark)
 	local response = {}
 	response.keyboard = keyboard
 	response.inline_keyboard = inline
